@@ -1,8 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const App = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
   const [isXTurn, setIsXTurn] = useState(true);
+  const [isFilled , setIsFilled] = useState(false);
+
+  const checkIsFilled = () => {
+    for (let index = 0; index < board.length; index++) {
+      if(board[index] === null){
+        return false ;
+      }
+    }
+    return true ;
+  }
+
+  useEffect(() => {
+    setIsFilled(checkIsFilled())
+  } , [board])
+
 
   const winner = checkWinner(board);
 
@@ -39,13 +54,15 @@ const App = () => {
       <p className="mt-4 text-lg font-medium text-purple-900">
         {winner ? `Winner: ${winner}` : board.includes(null) ? `Turn: ${isXTurn ? "X" : "O"}` : "It's a Draw!"}
       </p>
-
-      <button
+      {
+        (winner || isFilled) &&
+      (<button
         onClick={restartGame}
         className="mt-3 px-4 py-2 bg-purple-600 text-white rounded"
       >
         Restart
-      </button>
+      </button>)
+      }
     </div>
   );
 };
