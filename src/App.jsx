@@ -44,7 +44,7 @@ const App = () => {
           <div
             key={index}
             onClick={() => handleClick(index)}
-            className="w-20 h-20 bg-white flex items-center justify-center text-2xl border-2 border-purple-500 hover:bg-purple-400 cursor-pointer transition rounded-md"
+            className="w-20 h-20 bg-white flex items-center justify-center text-2xl border-2 border-purple-500 hover:bg-purple-1:00 cursor-pointer transition rounded-md"
           >
             {value}
           </div>
